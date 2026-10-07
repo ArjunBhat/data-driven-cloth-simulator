@@ -1,0 +1,8 @@
+{
+  "input": "56 = 14 joints x 4 quaternion components; row-major flatten of a (14, 4) array",
+  "normalize_quaternions": true,
+  "input_scaling": "none (training inputs were unit quaternions, no mean/std scaling)",
+  "quaternion_component_order": "arbitrary: the synthetic generator draws random unit 4-vectors",
+  "output": "per-vertex offsets, flat length 6510 = 2170 vertices x 3, reshape to (2170, 3)",
+  "output_units": "synthetic data units (not metres or any real-world unit)"
+}

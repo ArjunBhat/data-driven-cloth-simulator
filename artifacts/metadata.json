@@ -1,0 +1,38 @@
+{
+  "format_version": 1,
+  "selected_config": "64 PCA coeffs (64)",
+  "pca_components": 64,
+  "best_seed": 0,
+  "seed_validation_mse": {
+    "0": 1.244193936145166e-05,
+    "1": 1.244679242518032e-05,
+    "2": 1.2445634638424963e-05
+  },
+  "n_linear_layers": 3,
+  "in_dim": 56,
+  "out_dim": 6510,
+  "n_vertices": 2170,
+  "hidden_dims": [
+    128,
+    256
+  ],
+  "reported_metrics_mse": {
+    "train": 1.2173471986898221e-05,
+    "val": 1.244193936145166e-05,
+    "test": 1.2439880265446845e-05
+  },
+  "noise_floor_mse": 1.2250000000000001e-05,
+  "data_seed": 42,
+  "model_seeds": [
+    0,
+    1,
+    2
+  ],
+  "versions": {
+    "python": "3.13.0",
+    "numpy": "2.2.4",
+    "torch": "2.6.0+cu124",
+    "scikit-learn": "1.8.0"
+  },
+  "data_note": "Trained on SYNTHETIC pose -> offset data from a generator, not on real cloth simulations. Outputs are synthetic vertex offsets and say nothing about real cloth quality."
+}

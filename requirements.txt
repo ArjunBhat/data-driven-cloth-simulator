@@ -1,5 +1,8 @@
+# Training / notebook
 numpy>=1.22.0
 scipy>=1.9.0
 torch>=2.0.0
 scikit-learn>=1.2.0
 matplotlib>=3.6.0
+notebook>=7.0
+# Standalone inference (infer_cloth.py) needs only numpy
