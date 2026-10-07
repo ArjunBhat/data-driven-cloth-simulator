@@ -19,17 +19,17 @@ A reduced-order machine-learning pipeline for cloth: a small MLP maps a skeletal
 
 Protocol: 10,000 samples, 187 injected "failed simulation" outliers removed (9,813 kept), split 6,000 / 2,000 / 1,813. PCA and all fitting use the training set; the validation set drives early stopping and model selection; the test set is only reported. Three seeds per MLP configuration.
 
-## Results (this run: data seed 42, model seeds 0/1/2, CPU)
+## Results (this run: data seed 42, model seeds 0/1/2, CUDA)
 MSE per coordinate in synthetic data units squared. MLP rows are mean +/- std over 3 seeds.
 
 | Model | Output | Val | Test |
 |---|---|---|---|
 | Predict train mean | 6,510 | 7.796e-05 | 7.807e-05 |
 | Linear regression | 6,510 | 1.238e-05 | 1.238e-05 |
-| MLP 128-256 | 6,510 direct | 3.975e-05 +/- 2.6e-06 | 3.971e-05 +/- 2.6e-06 |
+| MLP 128-256 | 6,510 direct | 3.880e-05 +/- 2.9e-06 | 3.881e-05 +/- 2.9e-06 |
 | MLP 128-256 | PCA 64 | 1.244e-05 +/- 2.1e-09 | 1.244e-05 +/- 2.1e-09 |
 | MLP 128-256 | PCA 128 | 1.248e-05 +/- 3.5e-09 | 1.247e-05 +/- 2.5e-09 |
-| MLP 128-256 | PCA 256 | 1.253e-05 +/- 4.2e-09 | 1.253e-05 +/- 2.9e-09 |
+| MLP 128-256 | PCA 256 | 1.253e-05 +/- 4.2e-09 | 1.253e-05 +/- 3.0e-09 |
 
 The irreducible noise floor of the generator is 1.225e-05.
 
@@ -38,7 +38,7 @@ How to read this:
 - The PCA output layer helps the MLP a lot over direct 6,510-D output (about 4.0e-05 vs about 1.25e-05). The direct model was still underfitting at the fixed learning rate and was not tuned, so read this as "under this training budget".
 - Fewer components scored marginally better (k=64 < 128 < 256), an artefact of the generator (rank <= 56 signal plus i.i.d. noise). It does not imply 64 is right for real data. The differences are about 1-2% of the error.
 - Selected configuration: PCA 64, chosen on validation MSE only. The deployed seed is the best-validation seed within that configuration (chosen in code; see section 5b of the notebook).
-- Latency (batch of 1, PyTorch, CPU, this machine): about 0.1 ms per pose. This is **not** compared with a physics solver; none was run here.
+- Latency (batch of 1, PyTorch, CUDA, this machine): 0.238 ms per pose. This is **not** compared with a physics solver; none was run here.
 
 See the notebook's final markdown cells for the complete list of limitations.
 
